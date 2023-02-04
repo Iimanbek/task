@@ -1,6 +1,28 @@
 <template >
-    <div>
-        <table class="table">
+  <div v-if=" CapStore.data ">
+    <h1>{{ CapStore.data.s }}</h1>  
+    <div class="main_wrapper">
+      <table class="table">
+        <h2>BIDS</h2>
+    <thead class="table__thead">
+      <tr class="table-row">
+        <th class="table-row__th">Price</th>
+        <th class="table-row__th">Ammount</th>
+        <th class="table-row__th table-row__th-total_hide">Total</th>
+      </tr>
+    </thead>
+    <tbody  v-if="CapStore.data" class="table__tbody">
+      <tr class="table-row" v-for="(item, index) in  CapStore.data.b" :key="index">
+        <td class="table-row__td">{{ item[0] }}</td>
+        <td class="table-row__td">{{ item[1] }}</td>
+        <td class="table-row__td table-row__td-total_hide">
+          {{ item[0] * item[1] }}
+        </td>
+      </tr>
+    </tbody>
+      </table>
+      <table class="table">
+        <h2>ASKS</h2>
     <thead class="table__thead">
       <tr class="table-row">
         <th class="table-row__th">Price</th>
@@ -17,8 +39,9 @@
         </td>
       </tr>
     </tbody>
-  </table>
+      </table>
     </div>
+  </div>
 </template>
 <script>
 import { mapStores } from 'pinia';
@@ -31,17 +54,13 @@ export default {
 </script>
 <style scoped> 
 
-.wrapTable {
-    height: calc(100vh - 120px);
-    overflow: auto;
-    width: 100%;
-}
 .table {
-  border-collapse: collapse; /*убираем пустые промежутки между ячейками*/
-  border: 2px solid grey; /*устанавливаем для таблицы внешнюю границу серого цвета толщиной 1px*/
-  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid grey; 
+  width: 40%;
   background-color: inherit;
   text-align: center;
+  overflow: scroll;
 }
 .table-row__th,
 .table-row__td {
@@ -63,5 +82,17 @@ table-row__th {
   .table-row__td-total_hide {
     display: none;
   }
+}
+.main_wrapper{
+  display: flex;
+  justify-content: space-between;
+  overflow-x: hidden;
+  height: 65vh;
+  width: 100%;
+  margin: 50px auto;
+  scroll-snap-type: y mandatory;
+}
+h1{
+  text-align: center;
 }
 </style>

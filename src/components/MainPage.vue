@@ -3,7 +3,7 @@
         <navogation/>
         <div class="main">
         <v-table/>
-      </div>
+        </div>
     </div>
   </template>
   <script>
