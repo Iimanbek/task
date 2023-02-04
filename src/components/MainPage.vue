@@ -1,12 +1,14 @@
 <template>
     <div>
-        <navogation/>
+        <navigation/>
         <div class="main">
-        <v-table/>
+            <DiffList/>
+            <v-table/>
         </div>
     </div>
   </template>
   <script>
+  import DiffList from './DiffList.vue';
   import Tables from '../components/Tables.vue'
   import NavBar from '../components/NavBar.vue'
   import { mapStores } from 'pinia';
@@ -18,7 +20,8 @@
         }
     },
     components:{
-        navogation: NavBar,
+        DiffList,
+        navigation: NavBar,
         'v-table': Tables
     },
     computed:{
