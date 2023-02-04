@@ -1,20 +1,14 @@
 <template>
     <div>
-      <Promo/>
-      <div v-if="data">
-        <div v-for="item in data.a">
-          <div v-if="item[0] > 0 && item[1] > 0">
-            <span>{{  Math.round(item[0], 3) }}</span>
-            <span>-</span>
-            <span>{{  Math.round(item[1], 3) }}</span>
-            <span>-</span>
-            <span>{{  Math.round(item[1] * item[0], 3) }}</span>
-          </div>
-        </div>
+        <navogation/>
+        <div class="main">
+        <v-table/>
       </div>
     </div>
   </template>
   <script>
+  import Tables from '../components/Tables.vue'
+  import NavBar from '../components/NavBar.vue'
   import { mapStores } from 'pinia';
   import { useCapStore } from '../stores/SDK'
   export default{
@@ -23,15 +17,20 @@
             
         }
     },
+    components:{
+        navogation: NavBar,
+        'v-table': Tables
+    },
     computed:{
         ...mapStores(useCapStore)
+    },
+    methods: {
     },
     mounted() {
         this.CapStore.getSnapshot()
         this.CapStore.getData()
-        console.log(this.CapStore.data);
     },
-  }
+}
 //   import {ref} from 'vue'
 //   let data = ref(null)
 //   const getSnapshot = async () => {
@@ -59,3 +58,9 @@
 //   }
   
   </script>
+
+<style>
+.main{
+    margin-top: 10% ;
+}
+</style>

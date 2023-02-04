@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useCapStore = defineStore('Cap', {
     state: () => ({
-     data: null
+     data: null,
     }),
     actions:{
         async getSnapshot(){
@@ -14,8 +14,8 @@ export const useCapStore = defineStore('Cap', {
         getData(){
             const ws = new WebSocket(`wss://stream.binance.com:9443/ws/btcusdt@depth@1000ms`)
             ws.onmessage = response => {
-                this.data.value = console.log(JSON.parse(response.data))
-                this.data.value = JSON.parse(response.data)
+                this.data =  JSON.parse(response.data)
+                console.log(this.data);
             }
         }
     },
