@@ -26,9 +26,6 @@ export default {
 
     },
     updated() {
-        // this.CapStore.ws.close()
-        // this.changedValue()
-
     },
     watch: {
     hello(symbol) {
