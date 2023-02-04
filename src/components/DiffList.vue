@@ -3,7 +3,6 @@
         <v-select
         v-model="hello"
         chips
-        @change="hello"
         label="Select"
         :items="['btcusdt','bnbbtc', 'ethbtc']"
         ></v-select>        
@@ -15,7 +14,7 @@ import { useCapStore } from '../stores/SDK';
 export default {
     data() {
         return {
-            hello:'btcusdt'
+            hello:''
         }
     },
     mounted() {
